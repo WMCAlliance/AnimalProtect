@@ -1,16 +1,20 @@
 package me.damo1995.AnimalProtect;
  
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.flags.Flags;
+import com.sk89q.worldguard.protection.regions.RegionQuery;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
-
 import net.gravitydevelopment.updater.Updater;
 import net.gravitydevelopment.updater.Updater.ReleaseType;
-
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.FileConfigurationOptions;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
@@ -168,4 +172,9 @@ public void update(){
    }
    
    
+   public boolean canBuild(Player p, Location l) {
+      RegionQuery query = WorldGuard.getInstance().getPlatform().getRegionContainer().createQuery();
+      com.sk89q.worldedit.util.Location loc = BukkitAdapter.adapt(l);
+      return query.testState(loc, WorldGuardPlugin.inst().wrapPlayer(p), Flags.BUILD);
+   }
  }

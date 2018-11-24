@@ -29,7 +29,7 @@ import org.bukkit.event.player.PlayerShearEntityEvent;
        if (event.isCancelled()) return;
  
        if (this.plugin.getConfig().getBoolean("shear-protect"))
-         if (this.plugin.getWorldGuardPlugin().canBuild(player, loc)) {
+         if (plugin.canBuild(player, loc)) {
            event.setCancelled(false);
            if (this.plugin.getConfig().getBoolean("debug")) { player.sendMessage("Sheared Sheep Sucessfully!");
              return; }
@@ -49,7 +49,7 @@ import org.bukkit.event.player.PlayerShearEntityEvent;
 	   
 	   if(e.isCancelled()) return;
 	   if(this.plugin.getConfig().getBoolean("armorstand-protect") == true){
-		   if(this.plugin.getWorldGuardPlugin().canBuild(player, loc)){
+		   if(plugin.canBuild(player, loc)){
 			   e.setCancelled(false);
 			   return;
 		   }else{

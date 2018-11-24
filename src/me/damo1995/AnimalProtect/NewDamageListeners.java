@@ -1,7 +1,6 @@
  package me.damo1995.AnimalProtect;
  
  import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -36,7 +35,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
          player.sendMessage(entity);
        }
        if (protect.contains(entity)) {
-         if ((plugin.getWorldGuardPlugin().canBuild(player, loc)) || (player.hasPermission("animalprotect.bypass"))) {
+         if ((plugin.canBuild(player, loc)) || (player.hasPermission("animalprotect.bypass"))) {
            event.setCancelled(false);
            if (debug.booleanValue()) {
              player.sendMessage(event.getDamager().getType().toString() + " Attacked " + event.getEntity().getType().toString());
@@ -70,7 +69,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
        if (((arrow.getShooter() instanceof Player)) && (pfa.contains(entity))) {
          Player player = (Player)arrow.getShooter();
          Location loc = event.getEntity().getLocation();
-         if ((plugin.getWorldGuardPlugin().canBuild(player, loc)) || (player.hasPermission("animalprotect.bypass"))) {
+         if ((plugin.canBuild(player, loc)) || (player.hasPermission("animalprotect.bypass"))) {
            event.setCancelled(false);
            if (debug.booleanValue()) {
              player.sendMessage(event.getDamager().getType().toString() + " Attacked " + event.getEntity().getType().toString());

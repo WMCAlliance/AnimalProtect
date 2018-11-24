@@ -1,7 +1,6 @@
 package me.damo1995.AnimalProtect;
 
 import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -25,7 +24,7 @@ public class LeashManager implements Listener {
 		String entity = event.getEventName();
 		List<String> protect = plugin.getConfig().getStringList("protect-from-player");
 		if(protect.contains(entity)){
-			if((plugin.getWorldGuardPlugin().canBuild(player, loc) || player.hasPermission("animalprotect.bypass"))){
+			if((plugin.canBuild(player, loc) || player.hasPermission("animalprotect.bypass"))){
 				event.setCancelled(false);
 			}else{
 				event.setCancelled(true);
